@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Ezequiel">
+    <title>Ezequiel</title>
+    <link rel="stylesheet" href="assets/vendor/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/dist/css/theme-elements.css">
+    <link rel="stylesheet" href="assets/dist/css/default.css">
+    <link rel="stylesheet" href="assets/vendor/sweetalert/sweetalert.min.css">
+    <link rel="stylesheet" href="assets/vendor/animate/animate.css">
+    <link rel="stylesheet" href="assets/dist/css/app.css">
+
+    <link rel="stylesheet" href="assets/dist/css/simple-line-icons.min.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Paytone+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nova+Square&display=swap" rel="stylesheet">
+
+    <script src="assets/dist/js/modernizr.min.js"></script>
+
+    <style>
+        #text-footer {
+            font-family: 'Arial', sans-serif;
+            font-size: 2rem;
+            color: #00f;
+            text-align: center;
+            text-shadow: 0 0 5px #fff,
+                0 0 10px #fff,
+                0 0 20px #00f,
+                0 0 30px #00f,
+                0 0 40px #00f,
+                0 0 50px #00f,
+                0 0 75px #00f;
+            animation: neon 1.5s infinite alternate;
+        }
+
+        @keyframes neon {
+            from {
+                text-shadow: 0 0 5px #fff,
+                    0 0 10px #fff,
+                    0 0 20px #00f,
+                    0 0 30px #00f,
+                    0 0 40px #00f,
+                    0 0 50px #00f,
+                    0 0 75px #00f;
+            }
+
+            to {
+                text-shadow: 0 0 10px #fff,
+                    0 0 20px #fff,
+                    0 0 30px #00f,
+                    0 0 40px #00f,
+                    0 0 50px #00f,
+                    0 0 60px #00f,
+                    0 0 70px #00f,
+                    0 0 100px #00f;
+            }
+        }
+
+        .neon-border {
+            position: relative;
+            padding: 0px;
+            border-radius: 5px;
+            /* Ajusta esto según sea necesario para redondear los bordes */
+        }
+
+        .neon-border::before {
+            content: '';
+            position: absolute;
+            top: -4px;
+            left: -4px;
+            right: -4px;
+            bottom: -4px;
+            border: 2px solid #00f;
+            border-radius: 5px;
+            /* Asegúrate de que coincida con el borde del contenedor */
+            box-shadow: 0 0 5px #00f, 0 0 10px #00f, 0 0 15px #00f;
+            z-index: -1;
+        }
+
+        .input-group {
+            position: relative;
+        }
+
+
+        #gifElement {
+            display: none;
+            width: 100%;
+            /* Ajusta el ancho del GIF según tus necesidades */
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10000;
+        }
+
+        #overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 9999;
+        }
+
+        /* Media query para dispositivos de escritorio */
+        @media (min-width: 768px) {
+            #gifElement {
+                width: auto;
+                /* Ancho automático del GIF en dispositivos de escritorio */
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="particles-js"></div>
+
+    <div class="body" style="background-size: cover;background-repeat: no-repeat;background-attachment: fixed;background-position: center;min-height: 100vh">
+
+        <div class="sticky-top" style="background-color: #000;">
+
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <img src="assets/resources/img/freefire.png" width="150px" alt="">
+                <span class="ml-3" style="color: #ce7209; border-bottom: 1px solid #ce7209; padding-bottom: 2px;">
+                    DONATIONS
+                </span>
+                <img src="assets/resources/img/globe.png" class="mr-3" width="24px" alt="" style="margin-left: auto;">
+            </div>
+
+        </div>
+        <div role="main" class="main">
+
+            <div class="container d-flex align-items-center col-12 col-md-8 col-lg-3 py-3" style="height: 80vh">
+
+                <div id="overlay"></div>
+                <img id="gifElement" src="assets/resources/video/animation.gif" alt="GIF animado">
+
+                <div class="py-3">
+
+                    <h1 class="display-4 text-center text-white">
+                        <span class="small-ff" style="font-family: 'Nova Square', sans-serif; font-size: 1rem">🧢👟</span>
+                        <span style="font-family: 'Nova Square', sans-serif; font-size: 2.2rem">Trajes Veteranos</span>
+                        <span class="small-ff" style="font-family: 'Nova Square', sans-serif; font-size: 1rem">👕👖</span>
+                    </h1>
+
+                    <div class="row justify-content-center sticky-top">
+                        <div class="col-10 col-md-9 col-lg-9">
+                            <div class="input-group mb-3 neon-border" style="background-color: #9f9f9f;">
+                                <span class="input-group-text" id="basic-addon1"
+                                    style="background-color: #9f9f9f; border: none">
+                                    <img src="assets/resources/img/icon-user.png" width="24px" alt="">
+                                    <span class="ml-1 text-white"
+                                        style="font-family: 'Paytone One', sans-serif; font-size: 1rem">ID</span>
+                                </span>
+                                <input class="form-control form-control-sm text-1 text-dark" id="insert-your-id"
+                                    type="number" style="background-color: rgb(255, 255, 255);" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <ul class="d-none nav nav-pills sort-source sort-source-style-3 justify-content-center"
+                        data-sort-id="portfolio" data-option-key="filter"
+                        data-plugin-options="{'layoutMode': 'fitRows', 'filter': '*'}"></ul>
+
+
+                    <div class="sort-destination-loader sort-destination-loader-showing">
+                        <div id="portfolio" class="row portfolio-list sort-destination scrollable-div mx-3 my-4"
+                            data-sort-id="portfolio">
+
+
+                            <div class="col-4 isotope-item brands px-0">
+                                <div class="portfolio-item">
+                                    <a href="javascript:void(0)">
+                                        <span class="">
+                                            <span class="thumb-info-wrapper border-radius-0 image-container">
+                                                <img src="assets/resources/img/img_1.jpeg"
+                                                    class="img-fluid border-radius-0"
+                                                    style="border-radius: 5% !important" alt="" loading="lazy">
+                                            </span>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="col-4 isotope-item brands px-0">
+                                <div class="portfolio-item">
+                                    <a href="javascript:void(0)">
+                                        <span class="">
+                                            <span class="thumb-info-wrapper border-radius-0 image-container">
+                                                <img src="assets/resources/img/img_2.jpeg"
+                                                    class="img-fluid border-radius-0"
+                                                    style="border-radius: 5% !important" alt="" loading="lazy">
+                                            </span>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="col-4 isotope-item brands px-0">
+                                <div class="portfolio-item">
+                                    <a href="javascript:void(0)">
+                                        <span class="">
+                                            <span class="thumb-info-wrapper border-radius-0 image-container">
+                                                <img src="assets/resources/img/img_3.jpeg"
+                                                    class="img-fluid border-radius-0"
+                                                    style="border-radius: 5% !important" alt="" loading="lazy">
+                                            </span>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="col-4 isotope-item brands px-0">
+                                <div class="portfolio-item">
+                                    <a href="javascript:void(0)">
+                                        <span class="">
+                                            <span class="thumb-info-wrapper border-radius-0 image-container">
+                                                <img src="assets/resources/img/img_4.jpeg"
+                                                    class="img-fluid border-radius-0"
+                                                    style="border-radius: 5% !important" alt="" loading="lazy">
+                                            </span>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="col-4 isotope-item brands px-0">
+                                <div class="portfolio-item">
+                                    <a href="javascript:void(0)">
+                                        <span class="">
+                                            <span class="thumb-info-wrapper border-radius-0 image-container">
+                                                <img src="assets/resources/img/img_5.jpeg"
+                                                    class="img-fluid border-radius-0"
+                                                    style="border-radius: 5% !important" alt="" loading="lazy">
+                                            </span>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="col-4 isotope-item brands px-0">
+                                <div class="portfolio-item">
+                                    <a href="javascript:void(0)">
+                                        <span class="">
+                                            <span class="thumb-info-wrapper border-radius-0 image-container">
+                                                <img src="assets/resources/img/img_6.jpeg"
+                                                    class="img-fluid border-radius-0"
+                                                    style="border-radius: 5% !important" alt="" loading="lazy">
+                                            </span>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="col-4 isotope-item brands px-0">
+                                <div class="portfolio-item">
+                                    <a href="javascript:void(0)">
+                                        <span class="">
+                                            <span class="thumb-info-wrapper border-radius-0 image-container">
+                                                <img src="assets/resources/img/img_7.jpeg"
+                                                    class="img-fluid border-radius-0"
+                                                    style="border-radius: 5% !important" alt="" loading="lazy">
+                                            </span>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="col-4 isotope-item brands px-0">
+                                <div class="portfolio-item">
+                                    <a href="javascript:void(0)">
+                                        <span class="">
+                                            <span class="thumb-info-wrapper border-radius-0 image-container">
+                                                <img src="assets/resources/img/img_8.jpeg"
+                                                    class="img-fluid border-radius-0"
+                                                    style="border-radius: 5% !important" alt="" loading="lazy">
+                                            </span>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="col-4 isotope-item brands px-0">
+                                <div class="portfolio-item">
+                                    <a href="javascript:void(0)">
+                                        <span class="">
+                                            <span class="thumb-info-wrapper border-radius-0 image-container">
+                                                <img src="assets/resources/img/img_9.jpeg"
+                                                    class="img-fluid border-radius-0"
+                                                    style="border-radius: 5% !important" alt="" loading="lazy">
+                                            </span>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="col-4 isotope-item brands px-0">
+                                <div class="portfolio-item">
+                                    <a href="javascript:void(0)">
+                                        <span class="">
+                                            <span class="thumb-info-wrapper border-radius-0 image-container">
+                                                <img src="assets/resources/img/img_10.jpeg"
+                                                    class="img-fluid border-radius-0"
+                                                    style="border-radius: 5% !important" alt="" loading="lazy">
+                                            </span>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="col-4 isotope-item brands px-0">
+                                <div class="portfolio-item">
+                                    <a href="javascript:void(0)">
+                                        <span class="">
+                                            <span class="thumb-info-wrapper border-radius-0 image-container">
+                                                <img src="assets/resources/img/img_11.jpeg"
+                                                    class="img-fluid border-radius-0"
+                                                    style="border-radius: 5% !important" alt="" loading="lazy">
+                                            </span>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="col-4 isotope-item brands px-0">
+                                <div class="portfolio-item">
+                                    <a href="javascript:void(0)">
+                                        <span class="">
+                                            <span class="thumb-info-wrapper border-radius-0 image-container">
+                                                <img src="assets/resources/img/img_12.jpeg"
+                                                    class="img-fluid border-radius-0"
+                                                    style="border-radius: 5% !important" alt="" loading="lazy">
+                                            </span>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="col-4 isotope-item brands px-0">
+                                <div class="portfolio-item">
+                                    <a href="javascript:void(0)">
+                                        <span class="">
+                                            <span class="thumb-info-wrapper border-radius-0 image-container">
+                                                <img src="assets/resources/img/img_13.jpeg"
+                                                    class="img-fluid border-radius-0"
+                                                    style="border-radius: 5% !important" alt="" loading="lazy">
+                                            </span>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="col-4 isotope-item brands px-0">
+                                <div class="portfolio-item">
+                                    <a href="javascript:void(0)">
+                                        <span class="">
+                                            <span class="thumb-info-wrapper border-radius-0 image-container">
+                                                <img src="assets/resources/img/img_14.jpeg"
+                                                    class="img-fluid border-radius-0"
+                                                    style="border-radius: 5% !important" alt="" loading="lazy">
+                                            </span>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="col-4 isotope-item brands px-0">
+                                <div class="portfolio-item">
+                                    <a href="javascript:void(0)">
+                                        <span class="">
+                                            <span class="thumb-info-wrapper border-radius-0 image-container">
+                                                <img src="assets/resources/img/img_15.jpeg"
+                                                    class="img-fluid border-radius-0"
+                                                    style="border-radius: 5% !important" alt="" loading="lazy">
+                                            </span>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="col-4 isotope-item brands px-0">
+                                <div class="portfolio-item">
+                                    <a href="javascript:void(0)">
+                                        <span class="">
+                                            <span class="thumb-info-wrapper border-radius-0 image-container">
+                                                <img src="assets/resources/img/img_16.jpeg"
+                                                    class="img-fluid border-radius-0"
+                                                    style="border-radius: 5% !important" alt="" loading="lazy">
+                                            </span>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="col-4 isotope-item brands px-0">
+                                <div class="portfolio-item">
+                                    <a href="javascript:void(0)">
+                                        <span class="">
+                                            <span class="thumb-info-wrapper border-radius-0 image-container">
+                                                <img src="assets/resources/img/img_17.jpeg"
+                                                    class="img-fluid border-radius-0"
+                                                    style="border-radius: 5% !important" alt="" loading="lazy">
+                                            </span>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="col-4 isotope-item brands px-0">
+                                <div class="portfolio-item">
+                                    <a href="javascript:void(0)">
+                                        <span class="">
+                                            <span class="thumb-info-wrapper border-radius-0 image-container">
+                                                <img src="assets/resources/img/img_18.jpeg"
+                                                    class="img-fluid border-radius-0"
+                                                    style="border-radius: 5% !important" alt="" loading="lazy">
+                                            </span>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="col-4 isotope-item brands px-0">
+                                <div class="portfolio-item">
+                                    <a href="javascript:void(0)">
+                                        <span class="">
+                                            <span class="thumb-info-wrapper border-radius-0 image-container">
+                                                <img src="assets/resources/img/img_19.jpeg"
+                                                    class="img-fluid border-radius-0"
+                                                    style="border-radius: 5% !important" alt="" loading="lazy">
+                                            </span>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="col-4 isotope-item brands px-0">
+                                <div class="portfolio-item">
+                                    <a href="javascript:void(0)">
+                                        <span class="">
+                                            <span class="thumb-info-wrapper border-radius-0 image-container">
+                                                <img src="assets/resources/img/img_20.jpeg"
+                                                    class="img-fluid border-radius-0"
+                                                    style="border-radius: 5% !important" alt="" loading="lazy">
+                                            </span>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <div class="row justify-content-center my-2">
+                        <button id="generate" type="button" class="btn btn-xs btn-dark mt-1"
+                            style="border-radius: 1%; background-color: rgb(255, 123, 52)">
+                            <span style="font-size: 0.8rem; font-family: 'Paytone One', sans-serif;">GENERAR</span>
+                        </button>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <footer>
+                <div class="mt-auto pt-5">
+                    <div class="container-fluid" style="padding: 0; margin: 0;">
+                        <img src="assets/resources/img/footer.jpeg" alt="" style="width: 100%; display: block;">
+                    </div>
+                </div>
+               
+            </footer>
+
+        </div>
+    </div>
+
+
+
+    <!-- Vendor Files -->
+    <script src="assets/vendor/jquery/jquery.min.js"></script>
+    <script src="assets/vendor/bootstrap/bootstrap.min.js"></script>
+    <script src="assets/vendor/libs/common.min.js"></script>
+    <script src="assets/vendor/libs/isotope.min.js"></script>
+    <script src="assets/dist/js/theme.js"></script>
+    <script src="assets/dist/js/init.js"></script>
+    <script src="assets/vendor/sweetalert/sweetalert.min.js"></script>
+    <script src="assets/dist/js/app.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+</body>
+
+</html>
